@@ -31,6 +31,12 @@ namespace ConfigReader
             {
                 var name = pair.Key;
 
+                if (!propertiesOfType.ContainsKey(name))
+                {
+                    // ignore any properties that are not members of T:
+                    continue;
+                }
+
                 var propertyInfo = propertiesOfType[name];
 
                 var value = ConvertValue(pair, name, propertyInfo);
